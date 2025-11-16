@@ -297,6 +297,7 @@ For issues and questions:
 2. Review the configuration options
 3. Check the logs for error messages
 4. Create an issue with detailed information
+5. For support call 7989132992
 
 ---
 
