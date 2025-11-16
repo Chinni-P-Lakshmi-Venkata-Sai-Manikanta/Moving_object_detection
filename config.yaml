@@ -1,0 +1,70 @@
+# Advanced AI Motion Detection Configuration
+# This configuration file controls all aspects of the detection system
+
+detection:
+  confidence_threshold: 0.5
+  nms_threshold: 0.4
+  always_detect: false
+  ensemble_weights:
+    yolo: 0.6
+    detr: 0.3
+    sam: 0.1
+
+motion_detection:
+  method: "optical_flow"  # optical_flow, background_subtraction, frame_differencing, hybrid
+  sensitivity: 0.3
+  min_area: 100
+  gaussian_blur: 5
+  temporal_consistency: true
+
+tracking:
+  max_disappeared: 30
+  max_distance: 50.0
+  use_kalman: true
+  use_deep_features: false
+  trajectory_length: 50
+  prediction_steps: 5
+
+models:
+  yolo_path: "yolov8x.pt"
+  yolo_fast_path: "yolov8s.pt"
+  use_detr: true
+  use_sam: false
+  sam_type: "vit_h"
+  sam_checkpoint: "sam_vit_h_4b8939.pth"
+  device: "auto"  # auto, cpu, cuda
+
+performance:
+  use_gpu: true
+  batch_size: 1
+  num_threads: 4
+  memory_limit: 4096  # MB
+  quantization: false
+  model_optimization: true
+
+visualization:
+  show_bbox: true
+  show_trajectory: true
+  show_heatmap: false
+  show_predictions: true
+  bbox_thickness: 2
+  trajectory_thickness: 2
+  colors:
+    person: [0, 255, 0]
+    car: [255, 0, 0]
+    bicycle: [0, 0, 255]
+    default: [255, 255, 0]
+
+logging:
+  level: "INFO"
+  directory: "logs"
+  max_files: 10
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  enable_file_logging: true
+  enable_console_logging: true
+
+temporal:
+  history_size: 10
+  smoothing_alpha: 0.7
+  consistency_threshold: 0.3
+  prediction_horizon: 5
